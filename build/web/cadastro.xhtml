@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <b:form id="form_cadastro">
+            <b:navBar brand="FastFOOD" class="navbar-inverse" brandHref="index.xhtml">
+                
+                <b:container fluid="true" style="opacity: 1.0">
+                    <div align="right" >
+                        <b:button value="Logar" style="margin:7px" href="login.xhtml"/>
+                        
+                    </div>
+                </b:container>
+                
+            </b:navBar>
+            <b:container >
+                <b:panel title="Cadastrar" collapsible="false"  col-lg="10" offset-lg="1">
+                    <b:row>
+                        <b:column medium-screen="2" span="3">
+                            <h:outputText style="font-weight: bolder; font-size: x-large" value="Nome:" />
+                        </b:column>
+                        <b:column medium-screen="8" dir="rtl">
+                            <b:inputText required="true" placeholder="digite o Nome" name="nome" value="#{clienteBean.cliente.nome}"/>
+                             
+                        </b:column>
+                    </b:row>
+                    
+                    <b:row>
+                        <b:column medium-screen="2" span="3">
+                            <h:outputText style="font-weight: bolder; font-size: x-large" value="CPF:" />
+                        </b:column>
+                        <b:column medium-screen="8" dir="rtl">
+                            <b:inputText required="true" placeholder="digite o CPF" name="cpf" value="#{clienteBean.cliente.cpf}"/>
+                        </b:column>
+                    </b:row>
+                    
+                    <b:row>
+                        <b:column medium-screen="2" span="3">
+                            <h:outputText style="font-weight: bolder; font-size: x-large" value="Telefone:" />
+                        </b:column>
+                        <b:column medium-screen="8" dir="rtl">
+                            <b:inputText required="true" placeholder="digite o Telefone" name="telefone" value="#{clienteBean.cliente.tel}"/>
+                        </b:column>
+                    </b:row>
+                    
+                    <b:row>
+                        <b:column medium-screen="2" span="3">
+                            <h:outputText style="font-weight: bolder; font-size: x-large" value="CEP" />
+                        </b:column>
+                        <b:column medium-screen="8" dir="rtl">
+                            <b:inputText required="true" placeholder="digite o seu CEP" name="cep" value="#{clienteBean.cliente.endereco.cep}"/>
+                        </b:column>
+                    </b:row>
+                    <b:row>
+                        <b:column medium-screen="2" span="3">
+                            <h:outputText style="font-weight: bolder; font-size: x-large" value="Bairro" />
+                        </b:column>
+                        <b:column medium-screen="8" dir="rtl">
+                            <b:inputText required="true" placeholder="digite o seu Bairro" name="bairro" value="#{clienteBean.cliente.endereco.bairro}"/>
+                        </b:column>
+                    </b:row>
+                    
+                    <b:row>
+                        <b:column medium-screen="2" span="3">
+                            <h:outputText style="font-weight: bolder; font-size: x-large" value="Rua" />
+                        </b:column>
+                        <b:column medium-screen="8" dir="rtl">
+                            <b:inputText required="true" placeholder="digite a sua Rua" name="rua" value="#{clienteBean.cliente.endereco.rua}"/>
+                        </b:column>
+                    </b:row>
+                    
+                    <b:row>
+                        <b:column medium-screen="2" span="3">
+                            <h:outputText style="font-weight: bolder; font-size: x-large" value="Numero" />
+                        </b:column>
+                        <b:column medium-screen="8" dir="rtl">
+                            <b:inputText required="true" placeholder="digite o Numero" name="numero" value="#{clienteBean.cliente.endereco.numero}"/>
+                        </b:column>
+                    </b:row>
+                    
+                    <b:row>
+                        <b:column medium-screen="2" span="3">
+                            <h:outputText style="font-weight: bolder; font-size: x-large" value="Complemento" />
+                        </b:column>
+                        <b:column medium-screen="8" dir="rtl">
+                            <b:inputText required="true" placeholder="digite o Complemento" name="complemento" value="#{clienteBean.cliente.endereco.complemento}"/>
+                        </b:column>
+                    </b:row>
+                    
+                    <b:row>
+                        <b:column medium-screen="2" span="3">
+                            <h:outputText style="font-weight: bolder; font-size: x-large" value="Senha" />
+                        </b:column>
+                        <b:column medium-screen="8" dir="rtl">
+                            <b:inputSecret required="true" placeholder="digite a Senha" name="senha1" value="#{clienteBean.cliente.senha}"/>
+                        </b:column>
+                    </b:row>
+                    
+                    
+                    
+                    <b:row >
+                        <b:column span="6">
+
+                        </b:column>
+                        <b:column span="5" >
+
+                            <b:commandButton value="Cadastrar" look="primary" medium-screen="12" style="background-color:#81b33a; font-size: 18px"  action="#{clienteBean.cadastrarLogarCliente()}" />
+                        </b:column>
+                    </b:row>
+                    
+                </b:panel>
+            </b:container>
+        </b:form>
+    </h:body>
+</html>
+

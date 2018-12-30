@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <b:container fluid="true">
+            <b:row >
+                <b:column largeScreen="13">
+                    <b:navBar brand="FastFOOD" class="navbar-inverse" style="border-radius: 0;" brand-href="../" >
+                        <b:container fluid="false" style="opacity: 1.0">
+                            <div align="right" >
+                                <h:form>
+                                    <b:commandButton value="Sair" style="margin:7px; background-color: #5F7F31; color: snow; font-weight:bold;" action="#{admBean.logout()}"/>
+                                </h:form>
+                            </div>
+                        </b:container>
+                    </b:navBar>
+                </b:column>    
+            </b:row>
+            <b:row>
+                <b:container fluid="true">
+                    <b:row>
+                        <b:column span="2" styleClass="sidebar">
+                            <b:form>
+                            <b:listLinks>
+                                <b:navLink header="Opções" />
+                                <b:navCommandLink href="#" value="Pedidos" action="dashboard.xhtml?faces-redirect=false"/>
+                                <b:navCommandLink href="#" value="Cadastrar Item" />
+                                
+                            </b:listLinks>
+                            </b:form>
+                        </b:column>
+                        <b:column  span="9" styleClass="main" >
+                            <h1>ITEM</h1>
+                            <hr/>
+                            <b:row styleClass="">
+                                <b:column col-xs="6" col-sm="3" styleClass="placeholder">
+                                    <img data-src="holder.js/200x200/sky" class="img-responsive" alt="Generic placeholder thumbnail"/>
+                                    <h4>Label</h4>
+                                    <span class="text-muted">Something else</span>
+                                </b:column>
+                                <b:column col-xs="6" col-sm="3" styleClass="placeholder">
+                                    <img data-src="holder.js/200x200/vine" class="img-responsive" alt="Generic placeholder thumbnail"/>
+                                    <h4>Label</h4>
+                                    <span class="text-muted">Something else</span>
+                                </b:column>
+                                <b:column col-xs="6" col-sm="3" styleClass="placeholder">
+                                    <img data-src="holder.js/200x200/sky" class="img-responsive" alt="Generic placeholder thumbnail"/>
+                                    <h4>Label</h4>
+                                    <span class="text-muted">Something else</span>
+                                </b:column>
+                                <b:column col-xs="6" col-sm="3" styleClass="placeholder">
+                                    <img data-src="holder.js/200x200/vine" class="img-responsive" alt="Generic placeholder thumbnail"/>
+                                    <h4>Label</h4>
+                                    <span class="text-muted">Something else</span>
+                                </b:column>
+                            </b:row>
+                        </b:column>
+                    </b:row>
+                </b:container>
+            </b:row>
+        </b:container>
+    </h:body>
+</html>
+

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      >
+    <h:head>
+        <title>FastFOOD</title>
+    </h:head>
+    <h:body >
+        
+        <b:container fluid="true">
+            <b:row >
+                <b:column largeScreen="13">
+                    <b:navBar brand="FastFOOD" class="navbar-inverse" style="border-radius: 0;" >
+                        <b:container fluid="false" style="opacity: 1.0">
+                            <div align="right" >
+                                <h:form>
+                                    <b:button value="Logar" style="margin:7px" href="login.xhtml"/>
+                                    <b:button value="Cadastrar-se" style="margin:7px" href="cadastro.xhtml"/>
+                                    <b:button value="Admin" style="margin:7px" href="adm/admin.xhtml"/>
+                                </h:form>
+                            </div>
+                        </b:container>
+                    </b:navBar>
+                </b:column>    
+            </b:row>
+            <b:row >
+                <b:column largeScreen="13" >
+                    <b:carousel id="fastfood" style="width:100%; height: 564px; margin-top: -20px" interval="2500">
+                        <b:carouselItem >
+                            <img src="resources\imgs\ff2.jpg" alt="Hamburguer" style="width: 100%; height: 564px"/>
+                            <b:carouselCaption>
+                                <h2>Um belo Hamburguer</h2>
+                                <p>Para satisfazer sua fome</p>
+                            </b:carouselCaption>
+                        </b:carouselItem>
+                        <b:carouselItem>
+                            <img src="resources\imgs\ff3.jpg" alt="Bebidas" style="width: 100%; height: 564px" />
+                            <b:carouselCaption>
+                                <h2>Uma variedade de bebidas</h2>
+                                <p>Para satisfazer sua sede</p>
+                            </b:carouselCaption>
+                        </b:carouselItem>
+                        <b:carouselItem>
+                            <img src="resources\imgs\ff4.jpg" alt="Sobremesas" style="width: 100%;  height: 564px" />
+                            <b:carouselCaption>
+                                <h2>E várias sobremesas</h2>
+                                <p>Para satisfazer seu paladar</p>
+                            </b:carouselCaption>
+                        </b:carouselItem>
+                    </b:carousel>
+                </b:column>
+            </b:row>
+        </b:container>
+        
+        
+    </h:body>
+</html>
+

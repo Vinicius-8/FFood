@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Carrinho de compras</title>
+    </h:head>
+    <h:body>
+        <b:container fluid="true">
+            <b:row >
+                            <b:column largeScreen="13">
+                                <b:navBar brand="FastFOOD" class="navbar-inverse" style="border-radius: 0;" brand-href="../" >
+                                    <b:container fluid="false" style="opacity: 1.0">
+                                        <div align="right" >
+                                            <h:form>
+                                                <b:button value="Menu"  style="margin:7px; background-color: #5F7F31; color: snow; font-weight:bold;" href="menu.xhtml"/>
+                                                <b:commandButton value="Sair" style="margin:7px; background-color: #5F7F31; color: snow; font-weight:bold;" action="#{clienteBean.logout()}"/>
+                                            </h:form>
+                                        </div>
+                                    </b:container>
+                                </b:navBar>
+                            </b:column>    
+                        </b:row>
+            <b:tabView activeIndex="0">
+                <b:tab title="Carrinho">
+                    <b:container fluid="true">
+                        
+                        <b:row>
+                            <h2 align="center">Carrinho</h2>
+                            <b:growl id="msgs" showDetail="true" autoUpdate="true" />
+                        </b:row>
+                        <b:row style="width: 97%;margin: 10px 10px">
+                            <b:form>    
+                                <b:dataTable value="#{clienteBean.ip}" var="item" style="font-size: 16pt; align-self: center" >
+                                    <b:dataTableColumn label="Código" value="#{item.codigoItem}"  style="width: 20px;"/>
+                                    <b:dataTableColumn label="Item" value="#{item.nomeItem}"/>
+                                    <b:dataTableColumn label="Categoria" value="#{item.categoria.nomeCategoria}"/>
+                                    <b:dataTableColumn label="Preço" style="width: 105px;" value="R$#{item.preco}"/>
+                                    <b:dataTableColumn label="" style="width: 40px;"><b:commandButton icon="trash" action="#{clienteBean.remove(item)}" type="reset" update="@form" style="padding: 6px;margin: 0px 2px"/> </b:dataTableColumn>
+                                </b:dataTable>
+
+                            </b:form>
+                        </b:row>
+                        <b:row>
+                            <b:column offset="10" span="2">
+                                <h:outputText value="Total: R$#{clienteBean.totalPedido()}" style="font-size: 19pt;font-weight: bold;"/>
+                            </b:column>
+                        </b:row>
+                        <b:form>
+                            <b:row >
+
+
+                                <b:column>
+                                    <b:modal id="amodal2"  styleClass="modalPseudoClass2"
+                                             closable="false"  close-on-escape="false" backdrop="false">
+                                        <h2>#{clienteBean.tipoPedido()}</h2>
+                                        <b:inputText id="agen" rendered="#{clienteBean.tipo}"  required="true" requiredMessage="Você não especificou o dia e hora de entrega" value="#{clienteBean.agendamento}" />
+
+                                        <f:facet name="footer">
+                                            <b:button value="Fechar" dismiss="modal" />
+                                            <b:commandButton value="Finalizar Pedido"  action="#{clienteBean.finalizarPedido()}" />
+                                        </f:facet>
+                                    </b:modal>
+                                </b:column>
+                            </b:row>
+
+                            <b:row>
+                                <b:column>
+                                    <p style="font-size: 13pt;font-weight: bold">Forma de Entrega</p>    
+                                </b:column>
+                            </b:row>    
+                            <b:row >    
+                                <b:column  span="2" >
+
+                                    <b:selectOneMenu value="#{clienteBean.valorMenuOption}"   required="true"  requiredMessage="Selecione o tipo de entrega" >
+                                        <f:selectItem itemLabel="(Forma de Entrega)" itemValue="" />
+                                        <f:selectItem itemLabel="Entregar no endereço: #{clienteBean.cliente.endereco.toString()}" itemValue="1" />
+                                        <f:selectItem itemLabel="Vou Buscar" itemValue="2" />
+                                    </b:selectOneMenu>
+                                </b:column>
+
+                                <b:column span="1" offset="8" >
+                                    <b:commandButton process="@previous"  update="@form"  oncomplete="$('.modalPseudoClass2').modal()" disabled="#{clienteBean.isEmpty()}" value="Finalizar Pedido" />
+                                    
+                                </b:column>
+
+                            </b:row>
+                        </b:form>         
+                        <b:row>                
+                        </b:row>           
+                    </b:container>
+                </b:tab>
+                <b:tab title="Pedidos Realizados">
+                    <b:form>  
+                        <b:column>
+                            <b:modal id="amodal3"  styleClass="modalPseudoClass" title="Nota Fiscal"
+                                     closable="true"  close-on-escape="false" backdrop="false">
+                                <b:container>
+                                    <b:row>
+                                        <b:column offset="2">
+                                             <h3>FastFood</h3>
+                                        </b:column>
+                                    </b:row>
+                                    <b:row>
+                                        <b:column span="1">
+                                            <h3>Código: </h3>
+                                        </b:column>
+                                        <b:column offset="3"  span="1">
+                                            <h3>#{clienteBean.notaf.codigoPedido}</h3>
+                                        </b:column>
+                                    </b:row>
+                                    <b:row>
+                                        <b:column span="2">
+                                            <h3>CPF Cliente: </h3>
+                                        </b:column>
+                                        <b:column offset="2"  span="1">
+                                            <h3>#{clienteBean.notaf.cpfCliente}</h3>
+                                        </b:column>
+                                    </b:row>
+                                    <b:row>
+                                        <b:column span="1">
+                                            <h3>Data: </h3>
+                                        </b:column>
+                                        <b:column offset="3"  span="2">
+                                            <h3>#{clienteBean.notaf.dataPedido}</h3>
+                                        </b:column>
+                                    </b:row>
+                                    <b:row>
+                                        <b:column span="1">
+                                            <h3>Hora: </h3>
+                                        </b:column>
+                                        <b:column offset="3"  span="1">
+                                            <h3>#{clienteBean.notaf.hora}</h3>
+                                        </b:column>
+                                    </b:row>
+                                    <b:row>
+                                        <b:column span="1">
+                                            <h3>Total: </h3>
+                                        </b:column>
+                                        <b:column offset="3"  span="1">
+                                            <h3>R$#{clienteBean.notaf.valorTota}</h3>
+                                        </b:column>
+                                    </b:row>
+                                </b:container>
+                                <f:facet name="footer">
+                                    <b:button value="Fechar" dismiss="modal" />
+                                </f:facet>
+                            </b:modal>
+                        </b:column>
+                        <b:container fluid="true">
+                            <b:row>
+                                <h2 align="center">Pedidos Realizados</h2>
+                            </b:row>
+                            <b:row style="width: 97%;margin: 10px 10px">
+
+                                <b:dataTable value="#{clienteBean.meusPedidos}" var="mp" auto-update="true" style="font-size: 16pt; align-self: center" >
+                                    <b:dataTableColumn label="Data" value="#{mp.pagamento.dataPagamento}"  style="width: 20px;"/>
+                                    <b:dataTableColumn label="Situação"  style="width: 20px;">
+                                        <b:label text="#{(mp.status)?'Encerrado':'Não Encerrado'}" severity="#{(mp.status)?'success':'danger'}"/>
+                                    </b:dataTableColumn>
+                                    <b:dataTableColumn label="Preço" style="width: 105px;" value="R$#{mp.pagamento.valor}"/>
+                                    <b:dataTableColumn label="" style="width: 40px;">
+                                        <b:commandButton  update="@form"  oncomplete="$('.modalPseudoClass').modal()" value="Nota Fiscal" action="#{clienteBean.gerarNF(mp)}"/>
+                                    </b:dataTableColumn>
+                                </b:dataTable>
+                            </b:row>
+                        </b:container>
+                    </b:form>
+                </b:tab>
+            </b:tabView>
+        </b:container>
+    </h:body>
+</html>
+

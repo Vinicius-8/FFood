@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Menu</title>
+        <script>
+            if(!#{clienteBean.logado}){
+                window.location.href = '/FFood/index.xhtml';
+            }
+            
+        </script>
+        
+    </h:head>
+    <h:body>
+        <b:growl id="growlSpecific" placementFrom="top"
+                 global-only="false"
+                 show-summary="true" allow-dismiss="true"
+                 animation-enter="animated bounceInDown"
+                 animation-exit="animated flipOutX"
+                 escape="true" />
+        
+        <b:container fluid="true">
+            <b:row >
+                <b:column largeScreen="13">
+                    <b:navBar brand="FastFOOD" class="navbar-inverse" style="border-radius: 0;" brand-href="../" >
+                        <b:container fluid="false" style="opacity: 1.0">
+                            <div align="right" >
+                                <h:form>
+                                    <b:button value="Carrinho"  style="margin:7px; background-color: #5F7F31; color: snow; font-weight:bold;" href="minhaconta.xhtml"/>
+                                    <b:commandButton value="Sair" style="margin:7px; background-color: #5F7F31; color: snow; font-weight:bold;" action="#{clienteBean.logout()}"/>
+                                </h:form>
+                            </div>
+                        </b:container>
+                    </b:navBar>
+                </b:column>    
+            </b:row>
+            <b:row>
+               
+            </b:row>
+            <b:row>
+                <b:form>
+
+                    <b:column>
+                        <b:tabView  activeIndex="1" >
+                            
+                            <b:tab title="Hamburgers">
+                                <ui:repeat value="#{itemBean.hamburgers}" var="h">
+                                    <b:column span="3" style="margin-top: 30px">
+                                        <b:thumbnail style="height: 390px;" >
+                                            <b:image value="#{h.imgPath}"  style="height: 200px;width: 300px"/>
+                                            <f:facet name="caption">
+                                                <h3>#{h.nomeItem}</h3>
+                                                <p>R$#{h.preco} </p>
+                                                <b:commandButton  value="Adicionar ao carrinho" icon="shopping-cart" action="#{clienteBean.add(h)}"/>
+                                            </f:facet>
+
+                                        </b:thumbnail>
+                                    </b:column>  
+                                </ui:repeat>
+                            </b:tab>
+                            <b:tab title="Pizzas">
+                                <ui:repeat value="#{itemBean.pizza}" var="p">
+                                    <b:column span="3" style="margin-top: 30px">
+                                        <b:thumbnail style="height: 390px;" >
+                                            <b:image value="#{p.imgPath}"  style="height: 200px;width: 300px"/>
+                                            <f:facet name="caption">
+                                                <h3>#{p.nomeItem}</h3>
+                                                <p>R$#{p.preco} </p>
+                                                <b:commandButton  value="Adicionar ao carrinho" icon="shopping-cart" action="#{clienteBean.add(p)}"/>
+                                            </f:facet>
+                                        </b:thumbnail>
+                                    </b:column>  
+                                </ui:repeat>
+                            </b:tab>
+                            <b:tab title="Bebidas">
+                                <ui:repeat value="#{itemBean.bebida}" var="b">
+                                    <b:column span="3" style="margin-top: 30px">
+                                        <b:thumbnail style="height: 390px;" >
+                                            <b:image value="#{b.imgPath}"  style="height: 200px;width: 300px"/>
+                                            <f:facet name="caption">
+                                                <h3>#{b.nomeItem}</h3>
+                                                <p>R$#{b.preco} </p>
+                                                <b:commandButton  value="Adicionar ao carrinho" icon="shopping-cart" action="#{clienteBean.add(b)}"/>
+                                            </f:facet>
+
+                                        </b:thumbnail>
+                                    </b:column>  
+                                </ui:repeat>
+                            </b:tab>
+                            <b:tab title="Saladas">
+                                <ui:repeat value="#{itemBean.salada}" var="s">
+                                    <b:column span="3" style="margin-top: 30px">
+                                        <b:thumbnail style="height: 390px;" >
+                                            <b:image value="#{s.imgPath}"  style="height: 200px;width: 300px"/>
+                                            <f:facet name="caption">
+                                                <h3>#{s.nomeItem}</h3>
+                                                <p>R$#{s.preco} </p>
+                                                <b:commandButton  value="Adicionar ao carrinho" icon="shopping-cart" action="#{clienteBean.add(s)}"/>
+                                            </f:facet>
+
+                                        </b:thumbnail>
+                                    </b:column>  
+                                </ui:repeat>
+                            </b:tab>
+                            <b:tab title="Sobremesas">
+                                <ui:repeat value="#{itemBean.sobremesa}" var="so">
+                                    <b:column span="3" style="margin-top: 30px">
+                                        <b:thumbnail style="height: 390px;" >
+                                            <b:image value="#{so.imgPath}"  style="height: 200px;width: 300px"/>
+                                            <f:facet name="caption">
+                                                <h3>#{so.nomeItem}</h3>
+                                                <p>R$#{so.preco} </p>
+                                                <b:commandButton  value="Adicionar ao carrinho" icon="shopping-cart" action="#{clienteBean.add(so)}"/>
+                                            </f:facet>
+
+                                        </b:thumbnail>
+                                    </b:column>  
+                                </ui:repeat>
+                            </b:tab>
+                            <b:tab title="Acompanhamentos">
+                                <ui:repeat value="#{itemBean.acompanhamento}" var="a">
+                                   <b:column span="3" style="margin-top: 30px">
+                                        <b:thumbnail style="height: 390px;" >
+                                            <b:image value="#{a.imgPath}"  style="height: 200px;width: 300px"/>
+                                            <f:facet name="caption">
+                                                <h3>#{a.nomeItem}</h3>
+                                                <p>R$#{a.preco} </p>
+                                                <b:commandButton  value="Adicionar ao carrinho" icon="shopping-cart" action="#{clienteBean.add(a)}"/>
+                                            </f:facet>
+
+                                        </b:thumbnail>
+                                    </b:column>  
+                                </ui:repeat>
+                            </b:tab>
+                        </b:tabView>
+                    </b:column>
+                </b:form>
+               
+                   
+            </b:row>
+            
+            
+            <b:row>
+            </b:row>
+            
+        </b:container>
+    </h:body>
+</html>
+
